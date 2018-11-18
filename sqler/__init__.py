@@ -2,7 +2,7 @@ from flask import Flask
 from flask_restplus import Api
 from flask import Blueprint
 
-from .api_sqlutil import sql_api as ns1
+from .api_parse import sql_api as ns1
 
 
 def create_app():

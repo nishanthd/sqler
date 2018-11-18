@@ -1,7 +1,7 @@
 from flask_script import Manager
 
-from sqlutil import create_app
-from sqlutil import blueprint
+from sqler import create_app
+from sqler import blueprint
 
 
 app = create_app()

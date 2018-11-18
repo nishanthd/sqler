@@ -4,7 +4,7 @@ from flask import jsonify
 from .models import SqlParseRequest, Parameter, SqlParseResponse
 
 sql_api = Namespace(
-    'sql', description='SQL util to parse and manipulate parameters.')
+    'sql_api', description='SQL util to parse and manipulate parameters.')
 
 
 @sql_api.route('/parse')
