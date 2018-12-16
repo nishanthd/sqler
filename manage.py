@@ -1,7 +1,7 @@
 from flask_script import Manager
 
-from sqler import create_app
-from sqler import blueprint
+from sql_service import create_app
+from sql_service import blueprint
 
 
 app = create_app()
@@ -14,7 +14,6 @@ manager = Manager(app)
 @manager.command
 def run():
     app.run()
-
 
 if __name__ == '__main__':
     manager.run()
