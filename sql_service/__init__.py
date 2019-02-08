@@ -3,13 +3,14 @@ from flask_restplus import Api
 from flask_cors import CORS
 from flask import Blueprint
 
-from .api_parse import sql_api as ns1
+from .api import sql_api as ns1
 
 
 def create_app():
     app = Flask(__name__)
     CORS(app)
     return app
+
 
 blueprint = Blueprint('api', __name__)
 CORS(blueprint)
@@ -19,4 +20,5 @@ api = Api(blueprint,
           description='a boilerplate for flask restplus web service'
           )
 
-api.add_namespace(ns1, path='/sql')
+
+api.add_namespace(ns1, path='/query')

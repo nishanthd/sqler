@@ -1,5 +1,6 @@
 from flask import jsonify
 
+
 class ParametersMismatch(Exception):
     status_code = 400
 
@@ -14,6 +15,7 @@ class ParametersMismatch(Exception):
         rv = dict(self.payload or ())
         rv['message'] = self.message
         return rv
+
 
 class NotSupportedStatement(Exception):
     status_code = 400

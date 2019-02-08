@@ -1,18 +1,18 @@
-from flask import request, abort, Response
-from flask_restplus import Namespace, Resource, fields, reqparse
-from flask_cors import CORS,cross_origin
+from flask import request, abort
+from flask_restplus import Namespace, Resource
 from flask import jsonify
-from .models import SqlParseRequest, Parameter, SqlParseResponse
+from .models import SqlParseRequest, SqlParseResponse
 import utils
 from exception_handler import ParametersMismatch
 
 sql_api = Namespace(
-    'sql_api', description='SQL util to parse and manipulate parameters.')
+    'Query', description='SQL util to parse and modify parameters.')
 # CORS(sql_api)
 
-@sql_api.route('/parse')
-class SqlController(Resource):
 
+@sql_api.route('/parse')
+class QueryParser(Resource):
+    @sql_api.doc('hellodoc')
     @sql_api.expect(SqlParseRequest, validate=True)
     def post(self):
         if not request.json:
@@ -27,3 +27,13 @@ class SqlController(Resource):
             response.status_code = error.status_code
             return response
         return response.serialize()
+
+
+@sql_api.route('/construct')
+class QueryConstructor(Resource):
+    @sql_api.expect(SqlParseResponse, validate=True)
+    def post(self):
+        if not request.json:
+            abort(400)
+        req_data = request.get_json()
+        return utils.construct(req_data['query'], req_data['parameters'])
